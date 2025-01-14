@@ -36,6 +36,7 @@ public class RestController {
             // Filling an objects with the receivedQuestion consumed by the frontend
             // setting questionnaire name of questionnaire Object through the setter in the questionObject
             questionObject.setText(receivedQuestion.get("question"));
+            questionObject.setType(receivedQuestion.get("question-type"));
             questionnaire.setQuestions(questionObject);
             questionnaire.setTeacherId(100L);
             questionnaire.setName("ORM");
