@@ -26,7 +26,7 @@ public class RestController {
             questionObject.setText(receivedQuestion.get("question"));
             questionObject.getQuestionnaire().setName(receivedQuestion.get("questionnaire-name"));
 
-            // Here Do the Database Saving
+            // Here Do the Database Saving with the questionObjects values
 
         }
 
@@ -36,10 +36,13 @@ public class RestController {
         return "Return bool or string";
     }
 
-    public String loginTeacher() {
-
+    public String loginTeacher(@RequestBody Map<String,String> loginData) {
         // Add if check to authenticate a user and return true or false to the frontend
+        if (loginData == null || loginData.isEmpty()) {
+            return "Data is empty";
+        } else {
 
+        }
         return null;
     }
 }
