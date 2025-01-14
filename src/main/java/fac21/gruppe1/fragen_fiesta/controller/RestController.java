@@ -2,8 +2,10 @@ package fac21.gruppe1.fragen_fiesta.controller;
 
 import fac21.gruppe1.fragen_fiesta.model.Question;
 import fac21.gruppe1.fragen_fiesta.model.Questionnaire;
+import fac21.gruppe1.fragen_fiesta.model.Teacher;
 import fac21.gruppe1.fragen_fiesta.repository.QuestionRepository;
 import fac21.gruppe1.fragen_fiesta.repository.QuestionnaireRepository;
+import fac21.gruppe1.fragen_fiesta.repository.TeacherRepository;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.jackson.JsonComponent;
@@ -26,11 +28,15 @@ public class RestController {
     @Autowired
     QuestionnaireRepository questionnaireRepository;
 
+    @Autowired
+    TeacherRepository teacherRepository;
+
     RestController(){
 
 
     }
 
+    /* Endpoint got replaced by endpoint in Questionnaire
     @PostMapping("/api/receiveQuestion")
     public String receiveQuestion(@RequestBody Map<String,String> receivedQuestion) {
         if (receivedQuestion.isEmpty()) {
@@ -56,14 +62,19 @@ public class RestController {
         return "Return bool or string";
     }
 
+     */
+
     @PostMapping("/api/login")
     public String loginTeacher(@RequestBody Map<String,String> loginData, HttpSession sessionId) {
         // Add if check to authenticate a user and return true or false to the frontend
         if (loginData == null || loginData.isEmpty()) {
             return "Data is empty";
         } else {
-            String TeacherEmail = loginData.get("teacher-email");
-            String TeacherPassword = loginData.get("teacher-password");
+            Teacher teacher = new Teacher();
+            teacher.setEmail(loginData.get("teacher-email"));
+            teacher.setPassword(loginData.get("teacher-password"));
+
+
 
             // Check Credentials of Teacher with data from the DB
 
@@ -78,9 +89,10 @@ public class RestController {
         if (registerData == null || registerData.isEmpty()) {
             return "Data is empty";
         } else {
-            String TeacherEmail = registerData.get("teacher-email");
-            String TeacherPassword = registerData.get("teacher-password");
-
+            Teacher teacher = new Teacher();
+            teacher.setEmail(registerData.get("teacher-email"));
+            teacher.setPassword(registerData.get("teacher-password"));
+            teacherRepository.save(teacher);
             // Check Credentials of Teacher with data from the DB
 
             // Encrypt the password on receiving here
