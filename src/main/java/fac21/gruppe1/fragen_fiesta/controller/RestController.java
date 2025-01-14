@@ -81,7 +81,7 @@ public class RestController {
             // Check Credentials of Teacher with data from the DB
 
             // Encrypt the password on receiving here
-            return "logged in";
+            return "New user registered. Please use your Email to reset your password (if needed)";
         }
 
     }
