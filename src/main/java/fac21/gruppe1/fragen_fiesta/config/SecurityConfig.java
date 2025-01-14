@@ -1,3 +1,5 @@
+
+/*
 package fac21.gruppe1.fragen_fiesta.config;
 
 import org.springframework.context.annotation.Bean;
@@ -22,3 +24,5 @@ public class SecurityConfig {
         return http.build();
     }
 }
+*/
+

@@ -46,10 +46,7 @@ public class Questionnaire {
         return questions;
     }
 
-    public void setQuestions(List<Question> questions) {
-        this.questions = questions;
-        if (questions != null) {
-            questions.forEach(question -> question.addQuestionToQuestionnaire(question));
-        }
+    public void setQuestions(Question question) {
+       questions.add(question);
     }
 }

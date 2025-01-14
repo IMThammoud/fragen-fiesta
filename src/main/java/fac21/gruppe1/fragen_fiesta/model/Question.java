@@ -15,7 +15,7 @@ public class Question {
     private String type;
 
     @ManyToOne
-    @JoinColumn(name = "questionnaire_id", nullable = false)
+    @JoinColumn(name = "questionnaire_id", nullable = true)
     private Questionnaire questionnaire;
 
     @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, orphanRemoval = true)
