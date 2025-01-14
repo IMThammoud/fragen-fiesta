@@ -50,6 +50,10 @@ public class Question {
         return questionnaire;
     }
 
+    public void setQuestionnaire(Questionnaire questionnaire) {
+        this.questionnaire = questionnaire;
+    }
+
     public void addQuestionToQuestionnaire(Question question) {
         this.questionnaire.getQuestions().add(question);
     }

@@ -46,7 +46,12 @@ public class Questionnaire {
         return questions;
     }
 
-    public void setQuestions(Question question) {
-       questions.add(question);
+    public void setQuestions(List<Question> questions) {
+        this.questions = questions;
+        if (questions != null) {
+            for (Question question : questions) {
+                question.setQuestionnaire(this);
+            }
+        }
     }
 }
