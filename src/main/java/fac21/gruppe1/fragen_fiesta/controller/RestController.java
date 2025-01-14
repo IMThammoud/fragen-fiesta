@@ -1,28 +1,48 @@
 package fac21.gruppe1.fragen_fiesta.controller;
 
-import com.google.gson.Gson;
-import org.springframework.web.bind.annotation.PostMapping;
+import fac21.gruppe1.fragen_fiesta.model.Question;
+import fac21.gruppe1.fragen_fiesta.model.Questionnaire;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.jackson.JsonComponent;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import java.util.HashMap;
+import java.util.Map;
 
 @org.springframework.web.bind.annotation.RestController
 public class RestController {
-    public RestController() {
-        Gson gson = new Gson();
+    Question questionObject;
+
+    RestController(){
+
+
     }
 
-    @PostMapping("/api/submit/question")
-    public String submitQuestion(@RequestBody HashMap <String, String> question) {
+    public String receiveQuestion(@RequestBody Map<String,String> receivedQuestion) {
+        if (receivedQuestion.isEmpty()) {
+            return "Empty";
+        }else {
+            // Filling an objects with the receivedQuestion consumed by the frontend
+            // setting questionnaire name of questionnaire Object through the setter in the questionObject
+            questionObject.setText(receivedQuestion.get("question"));
+            questionObject.getQuestionnaire().setName(receivedQuestion.get("questionnaire-name"));
+
+            // Here Do the Database Saving with the questionObjects values
+
+        }
 
 
-        return null;
+
+        // Je nach dem was Dennis benötigt für eine Bestätigung
+        return "Return bool or string";
     }
 
-    @PostMapping("/api/submit/blabla")
-    public String submitbla(@RequestBody HashMap <String, String> question) {
+    public String loginTeacher(@RequestBody Map<String,String> loginData) {
+        // Add if check to authenticate a user and return true or false to the frontend
+        if (loginData == null || loginData.isEmpty()) {
+            return "Data is empty";
+        } else {
 
-
+        }
         return null;
     }
 }
