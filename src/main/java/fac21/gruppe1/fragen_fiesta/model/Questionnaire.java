@@ -1,6 +1,8 @@
 package fac21.gruppe1.fragen_fiesta.model;
 
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -15,7 +17,7 @@ public class Questionnaire {
     private Long teacherId;
 
     @OneToMany(mappedBy = "questionnaire", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Question> questions;
+    public List<Question> questions =new ArrayList<>();
 
     // Getter und Setter
     public Long getId() {
@@ -46,7 +48,7 @@ public class Questionnaire {
         return questions;
     }
 
-    public void setQuestions(Question question) {
-       questions.add(question);
+    public void setQuestions(Question question1) {
+       this.questions.add(question1);
     }
 }

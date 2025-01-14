@@ -36,11 +36,13 @@ public class RestController {
             // Filling an objects with the receivedQuestion consumed by the frontend
             // setting questionnaire name of questionnaire Object through the setter in the questionObject
             questionObject.setText(receivedQuestion.get("question"));
-            //questionnaire.setQuestions(questionObject);
+            questionnaire.setQuestions(questionObject);
+            questionnaire.setTeacherId(100L);
+            questionnaire.setName("ORM");
 
             // Here Do the Database Saving with the questionObjects value
             questionRepository.save(questionObject);
-            //questionnaireRepository.save(questionnaire);
+            questionnaireRepository.save(questionnaire);
 
         }
 
