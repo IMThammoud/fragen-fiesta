@@ -7,8 +7,11 @@ import fac21.gruppe1.fragen_fiesta.repository.QuestionnaireRepository;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.jackson.JsonComponent;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Map;
 
@@ -81,7 +84,8 @@ public class RestController {
             // Check Credentials of Teacher with data from the DB
 
             // Encrypt the password on receiving here
-            return "New user registered. Please use your Email to reset your password (if needed)";
+            // Should return a HTTP Status code
+            return ResponseEntity.status(HttpStatus.OK).toString();
         }
 
     }
