@@ -53,13 +53,36 @@ public class RestController {
         return "Return bool or string";
     }
 
+    @PostMapping("/api/login")
     public String loginTeacher(@RequestBody Map<String,String> loginData, HttpSession sessionId) {
         // Add if check to authenticate a user and return true or false to the frontend
         if (loginData == null || loginData.isEmpty()) {
             return "Data is empty";
         } else {
+            String TeacherEmail = loginData.get("teacher-email");
+            String TeacherPassword = loginData.get("teacher-password");
 
+            // Check Credentials of Teacher with data from the DB
+
+            // Encrypt the password on receiving here
+            return "logged in";
         }
-        return null;
+
+    }
+
+    @PostMapping("/api/user-registration")
+    public String registrateTeacher(@RequestBody Map<String, String> registerData) {
+        if (registerData == null || registerData.isEmpty()) {
+            return "Data is empty";
+        } else {
+            String TeacherEmail = registerData.get("teacher-email");
+            String TeacherPassword = registerData.get("teacher-password");
+
+            // Check Credentials of Teacher with data from the DB
+
+            // Encrypt the password on receiving here
+            return "logged in";
+        }
+
     }
 }
