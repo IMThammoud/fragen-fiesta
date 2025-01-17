@@ -11,9 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.jackson.JsonComponent;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -31,12 +29,10 @@ public class RestController {
     @Autowired
     TeacherRepository teacherRepository;
 
-    RestController(){
+    RestController(){}
 
-
-    }
-
-    /* Endpoint got replaced by endpoint in Questionnaire
+    /*
+    Endpoint got replaced by endpoint in Questionnaire
     @PostMapping("/api/receiveQuestion")
     public String receiveQuestion(@RequestBody Map<String,String> receivedQuestion) {
         if (receivedQuestion.isEmpty()) {
@@ -61,12 +57,12 @@ public class RestController {
         // Je nach dem was Dennis benötigt für eine Bestätigung
         return "Return bool or string";
     }
-
-     */
+ */
 
     @PostMapping("/api/login")
     public String loginTeacher(@RequestBody Map<String,String> loginData, HttpSession sessionId) {
         // Add if check to authenticate a user and return true or false to the frontend
+        // Once a HTTPsession object is created the a JSESSIONID is created and sent to the client
         if (loginData == null || loginData.isEmpty()) {
             return "Data is empty";
         } else {
@@ -100,5 +96,15 @@ public class RestController {
             return ResponseEntity.status(HttpStatus.OK).toString();
         }
 
+    }
+
+    @GetMapping("/api/questionnaire-dashboard")
+    public String getQuestionnaireDashboard(@CookieValue(name = "JSESSIONID") String cookieSession) {
+        return null;
+    }
+
+    @PostMapping("/api/retrieve-answers-to-questions")
+    public String getSpecificAnswersToQuestions(@CookieValue(name = "JSESSIONID") String cookieValue) {
+        return null;
     }
 }

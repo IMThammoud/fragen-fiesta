@@ -20,12 +20,12 @@ public class QuestionnaireController {
     @PostMapping
     public Questionnaire createQuestionnaire(@RequestBody Questionnaire questionnaire) {
         // Logging für Debugging
-        System.out.println("Received questionnaire: " + questionnaire);
+        System.out.println("Received questionnaire: " + questionnaire.toString());
 
         // Verknüpfen der Fragen mit dem Fragebogen
         for (Question question : questionnaire.getQuestions()) {
             question.setQuestionnaire(questionnaire); // Verknüpfe jede Frage mit dem Fragebogen
-            for (Option option : question.getOptions()) {
+            for (Option option : question.getOptions()) { // Optionen können auch als Antworten gelten.
                 option.setQuestion(question); // Verknüpfe jede Option mit der Frage
             }
         }
